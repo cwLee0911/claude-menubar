@@ -150,16 +150,20 @@ write_aggregate() {
         resetsAt: (.resetsAt | number_or_null)
       };
     def aggregate_window($name):
-      # The 5h / weekly counters are account-wide; every session reports the
-      # same number sampled at a different moment. The truth is the freshest
-      # sample, not the largest one. Picking max(updatedAt) is deterministic,
-      # so the value no longer flip-flops between concurrent terminals, and a
-      # reset window (lower number, later resetsAt) is reflected immediately.
+      # The 5h / weekly counters are account-wide and only climb within a
+      # window. Each session reports the percentage as of its last API
+      # response, not as of the status-line redraw, so an idle terminal keeps
+      # re-rendering a stale-low number. Take the latest reset window (a new
+      # window has a clearly later resetsAt; same-window terminals share the
+      # exact account boundary) and the MAX percentage within it, so a lagging
+      # terminal can neither lower the value nor make it flicker.
       map(select(.[$name] != null and (.[$name].usedPercentage != null)))
       | if length == 0 then
           { usedPercentage: null, resetsAt: null }
         else
-          max_by(.updatedAt // 0)
+          (map(.[$name].resetsAt // 0) | max) as $latestReset
+          | map(select((.[$name].resetsAt // 0) == $latestReset))
+          | max_by(.[$name].usedPercentage)
           | .[$name]
           | clean_window
         end;
