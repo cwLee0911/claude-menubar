@@ -2,10 +2,10 @@
 set -euo pipefail
 
 MODE="${1:-run}"
-APP_NAME="claude-usage"
-BUNDLE_ID="app.claude-usage"
-PROJECT="claude-usage.xcodeproj"
-SCHEME="claude-usage"
+APP_NAME="claude-menubar"
+BUNDLE_ID="app.claude-menubar"
+PROJECT="claude-menubar.xcodeproj"
+SCHEME="claude-menubar"
 CONFIGURATION="Debug"
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DERIVED_DATA="$ROOT_DIR/build/DerivedData"

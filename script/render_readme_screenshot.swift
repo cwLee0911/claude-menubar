@@ -68,7 +68,7 @@ private final class ReadmeScreenshotView: NSView {
         text("68%", NSRect(x: 1190, y: 13, width: 54, height: 18), size: 14, weight: .semibold, color: color(0x39ff14), monospaced: true)
         text("Sat 5:25 PM", NSRect(x: 1296, y: 14, width: 118, height: 20), size: 15, color: color(0x2f3032))
 
-        text("claude-usage", NSRect(x: 116, y: 600, width: 420, height: 58), size: 46, weight: .semibold, color: color(0xf4f7f2))
+        text("claude-menubar", NSRect(x: 116, y: 600, width: 620, height: 58), size: 42, weight: .semibold, color: color(0xf4f7f2))
         text("Real-time Claude Code limits\nfrom the macOS menu bar.", NSRect(x: 118, y: 672, width: 420, height: 58), size: 23, color: color(0xd8ddd6))
         rounded(NSRect(x: 118, y: 750, width: 224, height: 42), radius: 21, fill: color(0x00e676))
         text("Download for macOS", NSRect(x: 142, y: 762, width: 176, height: 20), size: 16, weight: .semibold, color: color(0x101214), alignment: .center)

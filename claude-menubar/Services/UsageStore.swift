@@ -29,7 +29,7 @@ final class UsageStore: ObservableObject {
                 withIntermediateDirectories: true
             )
         } catch {
-            NSLog("claude-usage could not create support directory: \(error.localizedDescription)")
+            NSLog("claude-menubar could not create support directory: \(error.localizedDescription)")
         }
 
         load()
@@ -63,7 +63,7 @@ final class UsageStore: ObservableObject {
                 weeklyDisplayUpdatedDate = nextSnapshot.updatedDate
             }
         } catch {
-            NSLog("claude-usage failed to load usage data: \(error.localizedDescription)")
+            NSLog("claude-menubar failed to load usage data: \(error.localizedDescription)")
             snapshot = nil
         }
     }

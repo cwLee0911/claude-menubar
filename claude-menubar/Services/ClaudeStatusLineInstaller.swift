@@ -67,12 +67,12 @@ enum ClaudeStatusLineInstaller {
 set -euo pipefail
 
 input="$(cat)"
-support_dir="$HOME/Library/Application Support/ClaudeUsageLimits"
+support_dir="$HOME/Library/Application Support/ClaudeMenubar"
 usage_file="$support_dir/usage.json"
 tmp_file="$support_dir/usage.json.tmp.$$"
-original_command_file="$HOME/.claude/claude-usage-limit-original-command.txt"
+original_command_file="$HOME/.claude/claude-menubar-original-command.txt"
 
-jq_bin="${CLAUDE_USAGE_JQ:-}"
+jq_bin="${CLAUDE_MENUBAR_JQ:-}"
 if [ -z "$jq_bin" ]; then
   jq_bin="$(command -v jq 2>/dev/null || true)"
 fi

@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-APP_NAME="claude-usage"
-PROJECT="claude-usage.xcodeproj"
-SCHEME="claude-usage"
+APP_NAME="claude-menubar"
+PROJECT="claude-menubar.xcodeproj"
+SCHEME="claude-menubar"
 CONFIGURATION="Release"
 TEAM_ID="${TEAM_ID:-}"
 SIGN_IDENTITY="${SIGN_IDENTITY:-}"
 NOTARY_PROFILE="${NOTARY_PROFILE:-}"
-VOLUME_NAME="${VOLUME_NAME:-claude-usage}"
+VOLUME_NAME="${VOLUME_NAME:-claude-menubar}"
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DERIVED_DATA="$ROOT_DIR/build/ReleaseDerivedData"
@@ -172,7 +172,7 @@ Signed artifacts:
   $DMG_PATH
 
 Notarization was skipped because NOTARY_PROFILE is empty. To notarize before shipping:
-  NOTARY_PROFILE=claude-usage-notary ./script/package_release.sh
+  NOTARY_PROFILE=claude-menubar-notary ./script/package_release.sh
 
 EOF
 fi

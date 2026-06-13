@@ -7,7 +7,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         do {
             try ClaudeStatusLineInstaller.installIfNeeded()
         } catch {
-            NSLog("claude-usage bridge install failed: \(error.localizedDescription)")
+            NSLog("claude-menubar bridge install failed: \(error.localizedDescription)")
         }
         usageStore.start()
         statusItemController = StatusItemController(store: usageStore)

@@ -1,12 +1,12 @@
-# claude-usage
+# claude-menubar
 
 An unofficial macOS menu bar utility for viewing Claude Code usage in real time.
 
-`claude-usage` shows current session and weekly usage, updates from Claude Code rate limit data, and stays out of the Dock.
+`claude-menubar` shows current session and weekly usage, updates from Claude Code rate limit data, and stays out of the Dock.
 
-[![Download for macOS](https://img.shields.io/badge/Download%20for%20macOS-DMG-00E676?style=for-the-badge&logo=apple&labelColor=101214&logoColor=00E676)](https://github.com/cwLee0911/claude-usage/releases/latest/download/claude-usage.dmg)
+[![Download for macOS](https://img.shields.io/badge/Download%20for%20macOS-DMG-00E676?style=for-the-badge&logo=apple&labelColor=101214&logoColor=00E676)](https://github.com/cwLee0911/claude-menubar/releases/latest/download/claude-menubar.dmg)
 
-![claude-usage screenshot](docs/screenshot.png)
+![claude-menubar screenshot](docs/screenshot.png)
 
 ## Features
 
@@ -17,7 +17,7 @@ An unofficial macOS menu bar utility for viewing Claude Code usage in real time.
 
 ## Download
 
-Download the latest DMG from the badge above, open it, and drag `claude-usage.app` to Applications.
+Download the latest DMG from the badge above, open it, and drag `claude-menubar.app` to Applications.
 
 Release DMGs are Developer ID signed and include an Applications shortcut.
 
@@ -44,7 +44,7 @@ Release DMGs are Developer ID signed and include an Applications shortcut.
 On launch, the app installs a small Claude Code `statusLine` bridge script. The bridge writes usage data to:
 
 ```text
-~/Library/Application Support/ClaudeUsageLimits/usage.json
+~/Library/Application Support/ClaudeMenubar/usage.json
 ```
 
 The menu bar app watches that file and displays the latest limits.

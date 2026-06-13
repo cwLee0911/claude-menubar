@@ -29,7 +29,7 @@
 		A20000000000000000000007 /* UsagePaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsagePaths.swift; sourceTree = "<group>"; };
 		A20000000000000000000008 /* UsageFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageFormatting.swift; sourceTree = "<group>"; };
 		A20000000000000000000009 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A20000000000000000000010 /* claude-usage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "claude-usage.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A20000000000000000000010 /* claude-menubar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "claude-menubar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A20000000000000000000011 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		A20000000000000000000012 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -48,12 +48,12 @@
 		A40000000000000000000001 = {
 			isa = PBXGroup;
 			children = (
-				A40000000000000000000002 /* claude-usage */,
+				A40000000000000000000002 /* claude-menubar */,
 				A40000000000000000000008 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A40000000000000000000002 /* claude-usage */ = {
+		A40000000000000000000002 /* claude-menubar */ = {
 			isa = PBXGroup;
 			children = (
 				A40000000000000000000003 /* App */,
@@ -64,7 +64,7 @@
 				A20000000000000000000012 /* Assets.xcassets */,
 				A20000000000000000000009 /* Info.plist */,
 			);
-			path = "claude-usage";
+			path = "claude-menubar";
 			sourceTree = "<group>";
 		};
 		A40000000000000000000003 /* App */ = {
@@ -114,7 +114,7 @@
 		A40000000000000000000008 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A20000000000000000000010 /* claude-usage.app */,
+				A20000000000000000000010 /* claude-menubar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,9 +122,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A50000000000000000000001 /* claude-usage */ = {
+		A50000000000000000000001 /* claude-menubar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A80000000000000000000002 /* Build configuration list for PBXNativeTarget "claude-usage" */;
+			buildConfigurationList = A80000000000000000000002 /* Build configuration list for PBXNativeTarget "claude-menubar" */;
 			buildPhases = (
 				A60000000000000000000001 /* Sources */,
 				A30000000000000000000001 /* Frameworks */,
@@ -134,9 +134,9 @@
 			);
 			dependencies = (
 			);
-			name = "claude-usage";
-			productName = "claude-usage";
-			productReference = A20000000000000000000010 /* claude-usage.app */;
+			name = "claude-menubar";
+			productName = "claude-menubar";
+			productReference = A20000000000000000000010 /* claude-menubar.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -156,7 +156,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A80000000000000000000001 /* Build configuration list for PBXProject "claude-usage" */;
+			buildConfigurationList = A80000000000000000000001 /* Build configuration list for PBXProject "claude-menubar" */;
 			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -169,7 +169,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A50000000000000000000001 /* claude-usage */,
+				A50000000000000000000001 /* claude-menubar */,
 			);
 		};
 /* End PBXProject section */
@@ -331,15 +331,15 @@
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = NO;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "claude-usage/Info.plist";
+				INFOPLIST_FILE = "claude-menubar/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "app.claude-usage";
-				PRODUCT_NAME = "claude-usage";
+				PRODUCT_BUNDLE_IDENTIFIER = "app.claude-menubar";
+				PRODUCT_NAME = "claude-menubar";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				SUPPORTS_MACCATALYST = NO;
@@ -362,15 +362,15 @@
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "claude-usage/Info.plist";
+				INFOPLIST_FILE = "claude-menubar/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "app.claude-usage";
-				PRODUCT_NAME = "claude-usage";
+				PRODUCT_BUNDLE_IDENTIFIER = "app.claude-menubar";
+				PRODUCT_NAME = "claude-menubar";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				SUPPORTS_MACCATALYST = NO;
@@ -381,7 +381,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A80000000000000000000001 /* Build configuration list for PBXProject "claude-usage" */ = {
+		A80000000000000000000001 /* Build configuration list for PBXProject "claude-menubar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A90000000000000000000001 /* Debug */,
@@ -390,7 +390,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A80000000000000000000002 /* Build configuration list for PBXNativeTarget "claude-usage" */ = {
+		A80000000000000000000002 /* Build configuration list for PBXNativeTarget "claude-menubar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A90000000000000000000003 /* Debug */,

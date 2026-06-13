@@ -7,7 +7,7 @@ struct IconSlot {
 }
 
 let outputDirectory = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-    .appendingPathComponent("claude-usage/Assets.xcassets/AppIcon.appiconset", isDirectory: true)
+    .appendingPathComponent("claude-menubar/Assets.xcassets/AppIcon.appiconset", isDirectory: true)
 
 let slots = [
     IconSlot(filename: "icon_16x16.png", pixels: 16),
