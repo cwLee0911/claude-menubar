@@ -2,19 +2,18 @@
 
 A small macOS menu bar app for viewing Claude Code usage in real time.
 
-[![Download for macOS](https://img.shields.io/badge/Download%20for%20macOS-Notarization%20pending-00E676?style=for-the-badge&logo=apple&labelColor=101214&logoColor=00E676)](https://github.com/cwLee0911/claude-usage/releases/latest)
+[![Download for macOS](https://img.shields.io/badge/Download%20for%20macOS-DMG-00E676?style=for-the-badge&logo=apple&labelColor=101214&logoColor=00E676)](https://github.com/cwLee0911/claude-usage/releases/latest/download/claude-usage.dmg)
 
 ![claude-usage screenshot](docs/screenshot.png)
 
 ## Download
 
-Direct macOS download is paused until the app is notarized. The button will point directly to `claude-usage.zip` after notarization succeeds.
+Click the badge above to download `claude-usage.dmg`, open it, drag `claude-usage.app` to Applications, then eject the disk image.
 
-Release zips should be built with the packaging script so the app is Developer ID signed and notarized before upload.
+Release DMGs are built with the packaging script so the app is Developer ID signed and packaged with an Applications shortcut.
 
 ```bash
-xcrun notarytool store-credentials claude-usage-notary --team-id "BKGYVZGXR3" --apple-id YOUR_APPLE_ID
-NOTARY_PROFILE=claude-usage-notary ./script/package_release.sh
+./script/package_release.sh
 ```
 
 ## Features

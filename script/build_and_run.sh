@@ -3,7 +3,7 @@ set -euo pipefail
 
 MODE="${1:-run}"
 APP_NAME="claude-usage"
-BUNDLE_ID="com.amber.claude-usage"
+BUNDLE_ID="app.claude-usage"
 PROJECT="claude-usage.xcodeproj"
 SCHEME="claude-usage"
 CONFIGURATION="Debug"
