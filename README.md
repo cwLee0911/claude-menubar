@@ -1,56 +1,56 @@
 # claude-usage
 
-A small macOS menu bar app for viewing Claude Code usage in real time.
+An unofficial macOS menu bar utility for viewing Claude Code usage in real time.
+
+`claude-usage` shows current session and weekly usage, updates from Claude Code rate limit data, and stays out of the Dock.
 
 [![Download for macOS](https://img.shields.io/badge/Download%20for%20macOS-DMG-00E676?style=for-the-badge&logo=apple&labelColor=101214&logoColor=00E676)](https://github.com/cwLee0911/claude-usage/releases/latest/download/claude-usage.dmg)
 
 ![claude-usage screenshot](docs/screenshot.png)
 
-## Download
-
-Click the badge above to download `claude-usage.dmg`, open it, drag `claude-usage.app` to Applications, then eject the disk image.
-
-Release DMGs are built with the packaging script so the app is Developer ID signed and packaged with an Applications shortcut.
-
-```bash
-./script/package_release.sh
-```
-
 ## Features
 
-- Shows current session and weekly Claude Code usage.
-- Updates from Claude Code rate limit data in real time.
-- Runs quietly in the macOS menu bar with no Dock icon.
-- Preserves an existing Claude Code `statusLine.command` when one is already configured.
+- Shows current session and weekly usage.
+- Updates from Claude Code rate limit data.
+- Runs as a menu bar app with no Dock icon.
+- Preserves an existing Claude Code `statusLine.command` when possible.
+
+## Download
+
+Download the latest DMG from the badge above, open it, and drag `claude-usage.app` to Applications.
+
+Release DMGs are Developer ID signed and include an Applications shortcut.
 
 ## Requirements
 
 - macOS 14+
-- Xcode
+- Xcode, for building from source
 - `jq` recommended
 
-## Build and Run
+## Build from Source
 
 ```bash
 ./script/build_and_run.sh
 ```
 
-To build manually:
+## Release
 
 ```bash
-xcodebuild \
-  -project claude-usage.xcodeproj \
-  -scheme claude-usage \
-  -configuration Debug \
-  CODE_SIGNING_ALLOWED=NO \
-  build
+./script/package_release.sh
 ```
 
 ## How It Works
 
-When the app starts, it installs a small Claude Code `statusLine` bridge script. The bridge reads Claude Code rate limit data, writes it to `~/Library/Application Support/ClaudeUsageLimits/usage.json`, and the menu bar app displays that usage in a compact panel.
+On launch, the app installs a small Claude Code `statusLine` bridge script. The bridge writes usage data to:
 
-## Resources
+```text
+~/Library/Application Support/ClaudeUsageLimits/usage.json
+```
 
-- [Build script](script/build_and_run.sh)
-- [Status line bridge installer](claude-usage/Services/ClaudeStatusLineInstaller.swift)
+The menu bar app watches that file and displays the latest limits.
+
+## Disclaimer
+
+This is an independent, unofficial third-party utility. It is not affiliated with, endorsed by, or sponsored by Anthropic.
+
+Claude and Claude Code are referenced only to describe compatibility with Anthropic's products. This project does not use Anthropic logos or brand assets.
