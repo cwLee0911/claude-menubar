@@ -2,13 +2,13 @@
 
 A small macOS menu bar app for viewing Claude Code usage in real time.
 
-[![Download for macOS](https://img.shields.io/badge/Download%20for%20macOS-claude--usage-00E676?style=for-the-badge&logo=apple&labelColor=101214&logoColor=00E676)](https://github.com/cwLee0911/claude-usage/releases/latest/download/claude-usage.zip)
+[![Download for macOS](https://img.shields.io/badge/Download%20for%20macOS-Notarization%20pending-00E676?style=for-the-badge&logo=apple&labelColor=101214&logoColor=00E676)](https://github.com/cwLee0911/claude-usage/releases/latest)
 
 ![claude-usage screenshot](docs/screenshot.png)
 
 ## Download
 
-Click the button above to download `claude-usage.zip` directly.
+Direct macOS download is paused until the app is notarized. The button will point directly to `claude-usage.zip` after notarization succeeds.
 
 Release zips should be built with the packaging script so the app is Developer ID signed and notarized before upload.
 

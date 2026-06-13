@@ -16,6 +16,26 @@ DIST_DIR="$ROOT_DIR/dist"
 ZIP_PATH="$DIST_DIR/$APP_NAME.zip"
 SIGNED_ZIP_PATH="$DIST_DIR/$APP_NAME-signed-not-notarized.zip"
 NOTARY_ZIP_PATH="$DIST_DIR/$APP_NAME-notary.zip"
+UNZIP_CHECK_DIR="$DIST_DIR/unzip-check"
+
+make_zip() {
+  local source_app="$1"
+  local output_zip="$2"
+  COPYFILE_DISABLE=1 ditto -c -k --norsrc --noextattr --noqtn --keepParent "$source_app" "$output_zip"
+}
+
+verify_zip_signature() {
+  local input_zip="$1"
+  rm -rf "$UNZIP_CHECK_DIR"
+  mkdir -p "$UNZIP_CHECK_DIR"
+  /usr/bin/unzip -q "$input_zip" -d "$UNZIP_CHECK_DIR"
+  codesign --verify --deep --strict --verbose=2 "$UNZIP_CHECK_DIR/$APP_NAME.app"
+  if /usr/bin/unzip -l "$input_zip" | grep -Eq '(^|/)\._|(^|/)__MACOSX(/|$)'; then
+    echo "Refusing zip with AppleDouble metadata: $input_zip" >&2
+    exit 1
+  fi
+  rm -rf "$UNZIP_CHECK_DIR"
+}
 
 cd "$ROOT_DIR"
 mkdir -p "$DIST_DIR"
@@ -40,15 +60,18 @@ codesign --verify --deep --strict --verbose=2 "$APP_BUNDLE"
 codesign -dvv "$APP_BUNDLE"
 
 if [[ -n "$NOTARY_PROFILE" ]]; then
-  ditto -c -k --keepParent "$APP_BUNDLE" "$NOTARY_ZIP_PATH"
+  make_zip "$APP_BUNDLE" "$NOTARY_ZIP_PATH"
+  verify_zip_signature "$NOTARY_ZIP_PATH"
   xcrun notarytool submit "$NOTARY_ZIP_PATH" --keychain-profile "$NOTARY_PROFILE" --wait
   xcrun stapler staple "$APP_BUNDLE"
   xcrun stapler validate "$APP_BUNDLE"
   spctl -a -vv "$APP_BUNDLE"
-  ditto -c -k --keepParent "$APP_BUNDLE" "$ZIP_PATH"
+  make_zip "$APP_BUNDLE" "$ZIP_PATH"
+  verify_zip_signature "$ZIP_PATH"
   echo "Release zip: $ZIP_PATH"
 else
-  ditto -c -k --keepParent "$APP_BUNDLE" "$SIGNED_ZIP_PATH"
+  make_zip "$APP_BUNDLE" "$SIGNED_ZIP_PATH"
+  verify_zip_signature "$SIGNED_ZIP_PATH"
   cat <<EOF
 
 Built and Developer ID signed:
