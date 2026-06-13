@@ -24,7 +24,7 @@ final class StatusItemController: NSObject, NSPopoverDelegate {
         button.font = Self.menuBarTitleFont
         button.target = self
         button.action = #selector(togglePopover(_:))
-        button.toolTip = "Claude 사용량"
+        button.toolTip = "Claude usage"
     }
 
     private func configurePopover() {

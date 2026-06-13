@@ -18,7 +18,7 @@ struct UsagePanelView: View {
             if let snap = snapshot, store.hasUsage {
                 VStack(spacing: 6) {
                     UsageCard(
-                        title: "현재 세션",
+                        title: "Current session",
                         window: snap.currentSession,
                         now: store.now,
                         resetText: UsageFormatting.sessionResetText(
@@ -29,7 +29,7 @@ struct UsagePanelView: View {
                     )
                     if let weekly = store.weeklyForDisplay {
                         UsageCard(
-                            title: "모든 모델",
+                            title: "All models",
                             window: weekly,
                             now: store.now,
                             resetText: UsageFormatting.weeklyResetText(
@@ -84,10 +84,10 @@ struct UsagePanelView: View {
 
     private var emptyState: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text("Claude Code 응답 후 표시됩니다")
+            Text("Shown after Claude Code responds")
                 .font(.system(size: 12, weight: .semibold))
                 .foregroundStyle(.primary)
-            Text("첫 번째 메시지를 보내면 실시간으로 연결됩니다.")
+            Text("Send your first message to connect in real time.")
                 .font(.system(size: 11))
                 .foregroundStyle(.secondary)
                 .lineLimit(2)
@@ -106,7 +106,7 @@ struct UsagePanelView: View {
                 .lineLimit(1)
                 .truncationMode(.tail)
             Spacer()
-            Button("종료") { onQuit() }
+            Button("Quit") { onQuit() }
                 .buttonStyle(.plain)
                 .font(.system(size: 10))
                 .foregroundStyle(Color.primary.opacity(0.45))
@@ -145,7 +145,7 @@ private struct UsageCard: View {
                             .foregroundStyle(Color.primary.opacity(0.40))
                     }
                     .buttonStyle(.plain)
-                    .help("모든 모델 새로고침")
+                    .help("Refresh all models")
                 }
                 Spacer(minLength: 8)
                 Text(pctText)
