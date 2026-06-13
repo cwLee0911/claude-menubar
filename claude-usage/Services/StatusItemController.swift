@@ -1,0 +1,106 @@
+import AppKit
+import Combine
+import SwiftUI
+
+final class StatusItemController: NSObject, NSPopoverDelegate {
+    private let store: UsageStore
+    private let statusItem: NSStatusItem
+    private let popover = NSPopover()
+    private var cancellables = Set<AnyCancellable>()
+    private var clockTimer: Timer?
+
+    init(store: UsageStore) {
+        self.store = store
+        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+        super.init()
+
+        configureStatusItem()
+        configurePopover()
+        bindStore()
+    }
+
+    private func configureStatusItem() {
+        guard let button = statusItem.button else { return }
+        updateStatusTitle("--%")
+        button.font = Self.menuBarTitleFont
+        button.target = self
+        button.action = #selector(togglePopover(_:))
+        button.toolTip = "Claude 사용량"
+    }
+
+    private func configurePopover() {
+        popover.behavior = .transient
+        popover.contentSize = NSSize(
+            width: UsagePanelView.panelSize.width,
+            height: UsagePanelView.panelSize.height
+        )
+        popover.delegate = self
+        popover.contentViewController = NSHostingController(
+            rootView: UsagePanelView(store: store) {
+                NSApplication.shared.terminate(nil)
+            }
+        )
+    }
+
+    private func bindStore() {
+        store.$snapshot
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] snapshot in
+                self?.updateStatusTitle(snapshot?.menuBarTitle ?? "--%")
+            }
+            .store(in: &cancellables)
+    }
+
+    private func updateStatusTitle(_ title: String) {
+        statusItem.button?.attributedTitle = NSAttributedString(
+            string: title,
+            attributes: [
+                .font: Self.menuBarTitleFont,
+                .foregroundColor: Self.claudeOrange
+            ]
+        )
+    }
+
+    @objc private func togglePopover(_ sender: AnyObject?) {
+        guard let button = statusItem.button else { return }
+
+        if popover.isShown {
+            popover.performClose(sender)
+            stopClock()
+        } else {
+            store.refreshClock()
+            store.refreshWeeklyDisplay()
+            popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
+            popover.contentViewController?.view.window?.makeKey()
+            startClock()
+        }
+    }
+
+    func popoverDidClose(_ notification: Notification) {
+        stopClock()
+    }
+
+    private func startClock() {
+        stopClock()
+        clockTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
+            self?.store.refreshClock()
+        }
+    }
+
+    private func stopClock() {
+        clockTimer?.invalidate()
+        clockTimer = nil
+    }
+
+    private static let menuBarTitleFont = NSFont.monospacedDigitSystemFont(
+        ofSize: NSFont.systemFontSize,
+        weight: .semibold
+    )
+
+    private static let claudeOrange = NSColor(
+        srgbRed: 0.85,
+        green: 0.47,
+        blue: 0.34,
+        alpha: 1
+    )
+}
