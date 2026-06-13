@@ -4,7 +4,7 @@ An unofficial macOS menu bar utility for viewing Claude Code usage in real time.
 
 `claude-menubar` shows current session and weekly usage, updates from Claude Code rate limit data, and stays out of the Dock.
 
-[![Download for macOS](https://img.shields.io/badge/Download%20for%20macOS-DMG-FF3B5E?style=for-the-badge&logo=apple&labelColor=101214&logoColor=FF3B5E)](https://github.com/cwLee0911/claude-menubar/releases/latest/download/claude-menubar.dmg)
+[![Download for macOS](https://img.shields.io/badge/Download%20for%20macOS-DMG-FF3B5E?style=for-the-badge&logo=apple&labelColor=101214&logoColor=FF3B5E)](https://cwlee0911.github.io/claude-menubar/)
 [![Live demo](https://img.shields.io/badge/Live%20demo-Website-4D8DFF?style=for-the-badge&logo=safari&labelColor=101214&logoColor=4D8DFF)](https://cwlee0911.github.io/claude-menubar/)
 
 [![claude-menubar screenshot](docs/website.png)](https://cwlee0911.github.io/claude-menubar/)
