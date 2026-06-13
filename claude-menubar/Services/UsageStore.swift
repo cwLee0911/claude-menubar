@@ -1,3 +1,4 @@
+import AppKit
 import Combine
 import Darwin
 import Foundation
@@ -12,6 +13,7 @@ final class UsageStore: ObservableObject {
     private var source: DispatchSourceFileSystemObject?
     private var directoryFileDescriptor: CInt = -1
     private var clockTimer: Timer?
+    private var lifecycleObservers: [NSObjectProtocol] = []
 
     var hasUsage: Bool {
         snapshot?.currentSession.effectivePercentage(now: now) != nil
@@ -36,6 +38,7 @@ final class UsageStore: ObservableObject {
         load()
         startMonitoringDirectory()
         startClock()
+        startObservingLifecycle()
     }
 
     func stop() {
@@ -43,6 +46,11 @@ final class UsageStore: ObservableObject {
         source = nil
         clockTimer?.invalidate()
         clockTimer = nil
+        for observer in lifecycleObservers {
+            NSWorkspace.shared.notificationCenter.removeObserver(observer)
+            NotificationCenter.default.removeObserver(observer)
+        }
+        lifecycleObservers.removeAll()
     }
 
     func refreshClock() {
@@ -115,6 +123,37 @@ final class UsageStore: ObservableObject {
         clockTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
             self?.refreshClock()
         }
+    }
+
+    /// The clock `Timer` does not fire while the Mac is asleep, so after waking
+    /// `now` would still hold yesterday's value and an expired reset window
+    /// would keep showing its stale percentage. Re-sync the clock (and reload
+    /// the file, in case it changed while we were inactive) whenever the system
+    /// wakes or the app returns to the foreground.
+    private func startObservingLifecycle() {
+        let resync: (Notification) -> Void = { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.load()
+                self?.refreshClock()
+            }
+        }
+
+        lifecycleObservers.append(
+            NSWorkspace.shared.notificationCenter.addObserver(
+                forName: NSWorkspace.didWakeNotification,
+                object: nil,
+                queue: .main,
+                using: resync
+            )
+        )
+        lifecycleObservers.append(
+            NotificationCenter.default.addObserver(
+                forName: NSApplication.didBecomeActiveNotification,
+                object: nil,
+                queue: .main,
+                using: resync
+            )
+        )
     }
 
 }
