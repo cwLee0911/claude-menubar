@@ -24,14 +24,14 @@ struct UsagePanelView: View {
                             for: snap.currentSession.resetDate,
                             now: store.now
                         ),
-                        accent: .sessionOrange,
+                        accent: .neonGreen,
                     )
                     if let weekly = store.weeklyForDisplay {
                         UsageCard(
                             title: "모든 모델",
                             window: weekly,
                             resetText: UsageFormatting.weeklyResetText(for: weekly.resetDate),
-                            accent: .modelBlue,
+                            accent: .modelCyan,
                             onRefresh: store.refreshWeeklyDisplay
                         )
                     }
@@ -57,7 +57,7 @@ struct UsagePanelView: View {
         HStack(spacing: 0) {
             HStack(spacing: 7) {
                 Circle()
-                    .fill(Color.sessionOrange)
+                    .fill(Color.neonGreen)
                     .frame(width: 7, height: 7)
                 Text("Claude")
                     .font(.system(size: 13, weight: .semibold))
@@ -189,8 +189,8 @@ private struct ProgressStrip: View {
 // MARK: - Color constants
 
 private extension Color {
-    static let sessionOrange = Color(red: 0.86, green: 0.44, blue: 0.27)
-    static let modelBlue     = Color(red: 0.25, green: 0.52, blue: 0.92)
+    static let neonGreen = Color(red: 0.22, green: 1.00, blue: 0.08)
+    static let modelCyan = Color(red: 0.24, green: 0.82, blue: 0.94)
 }
 
 // MARK: - Preview

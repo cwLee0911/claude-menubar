@@ -56,7 +56,7 @@ final class StatusItemController: NSObject, NSPopoverDelegate {
             string: title,
             attributes: [
                 .font: Self.menuBarTitleFont,
-                .foregroundColor: Self.claudeOrange
+                .foregroundColor: Self.claudeGreen
             ]
         )
     }
@@ -97,10 +97,10 @@ final class StatusItemController: NSObject, NSPopoverDelegate {
         weight: .semibold
     )
 
-    private static let claudeOrange = NSColor(
-        srgbRed: 0.85,
-        green: 0.47,
-        blue: 0.34,
+    private static let claudeGreen = NSColor(
+        srgbRed: 0.22,
+        green: 1.00,
+        blue: 0.08,
         alpha: 1
     )
 }
