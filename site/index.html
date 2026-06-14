@@ -237,36 +237,38 @@
   .panel-foot .quit { color: rgba(255,59,94,0.85); }
 
   /* ---------- Hero ---------- */
+  /* Hero lives inside .viewport (not .lid) so it can show below the laptop on mobile.
+     Units use vw/vh — equivalent to cqw/cqh after s-zoom when .lid fills the viewport. */
   .hero {
-    position: absolute; left: 5cqw; bottom: 6.5cqh; max-width: 42cqw; z-index: 6;
-    opacity: 0; transform: translateY(2.4cqh);
+    position: absolute; left: 5vw; bottom: 6.5vh; max-width: 42vw; z-index: 10;
+    opacity: 0; transform: translateY(2.4vh);
     transition: opacity .7s ease, transform .8s var(--ease-out);
   }
   .s-hero .hero { opacity: 1; transform: translateY(0); }
 
   .hero .eyebrow {
-    display: inline-flex; align-items: center; gap: 0.5cqw;
-    font-size: 1.2cqh; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+    display: inline-flex; align-items: center; gap: 0.5vw;
+    font-size: 1.2vh; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
     color: rgba(255,99,128,0.95);
     background: rgba(255,59,94,0.09); border: 1px solid rgba(255,59,94,0.22);
-    border-radius: 999px; padding: 0.5cqh 1cqw; margin-bottom: 1.6cqh;
+    border-radius: 999px; padding: 0.5vh 1vw; margin-bottom: 1.6vh;
   }
-  .hero .eyebrow .dot { width: 0.6cqh; height: 0.6cqh; min-width: 4px; min-height: 4px; border-radius: 50%; background: var(--red); box-shadow: 0 0 6px var(--red); }
+  .hero .eyebrow .dot { width: 0.6vh; height: 0.6vh; min-width: 4px; min-height: 4px; border-radius: 50%; background: var(--red); box-shadow: 0 0 6px var(--red); }
 
   .hero h1 {
-    font-size: 5.2cqh; font-weight: 800; letter-spacing: -0.035em; line-height: 1.02;
+    font-size: 5.2vh; font-weight: 800; letter-spacing: -0.035em; line-height: 1.02;
     background: linear-gradient(180deg, #ffffff 25%, #c4c0e6);
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  .hero p { margin-top: 1.5cqh; font-size: 1.95cqh; line-height: 1.4; color: #d2d3df; font-weight: 400; }
+  .hero p { margin-top: 1.5vh; font-size: 1.95vh; line-height: 1.4; color: #d2d3df; font-weight: 400; }
 
   .dl {
     position: relative; overflow: hidden;
-    display: inline-flex; align-items: center; gap: 0.75cqw; margin-top: 2.8cqh;
+    display: inline-flex; align-items: center; gap: 0.75vw; margin-top: 2.8vh;
     background: linear-gradient(180deg, #ff5d78, var(--red-deep));
-    color: #fff; font-size: 1.75cqh; font-weight: 700; letter-spacing: -0.01em; text-decoration: none;
-    padding: 1.35cqh 2cqw; border-radius: 999px;
-    box-shadow: 0 1.4cqh 3.2cqh -0.6cqh rgba(224,21,64,0.6), inset 0 1px 0 rgba(255,255,255,0.4);
+    color: #fff; font-size: 1.75vh; font-weight: 700; letter-spacing: -0.01em; text-decoration: none;
+    padding: 1.35vh 2vw; border-radius: 999px;
+    box-shadow: 0 1.4vh 3.2vh -0.6vh rgba(224,21,64,0.6), inset 0 1px 0 rgba(255,255,255,0.4);
     transition: transform .2s var(--ease-out), box-shadow .25s ease;
   }
   .dl::after {
@@ -275,15 +277,15 @@
     transform: skewX(-18deg); animation: shine 4.5s ease-in-out 1.5s infinite;
   }
   @keyframes shine { 0%,18% { left: -60%; } 38%,100% { left: 130%; } }
-  .dl:hover { transform: translateY(-3px); box-shadow: 0 2cqh 4cqh -0.6cqh rgba(224,21,64,0.7), inset 0 1px 0 rgba(255,255,255,0.4); }
+  .dl:hover { transform: translateY(-3px); box-shadow: 0 2vh 4vh -0.6vh rgba(224,21,64,0.7), inset 0 1px 0 rgba(255,255,255,0.4); }
   .dl:active { transform: translateY(-1px); }
-  .dl svg { width: 2cqh; height: 2cqh; }
+  .dl svg { width: 2vh; height: 2vh; }
 
-  .hero .meta { margin-top: 1.8cqh; display: flex; flex-wrap: wrap; gap: 0.7cqw; align-items: center; }
+  .hero .meta { margin-top: 1.8vh; display: flex; flex-wrap: wrap; gap: 0.7vw; align-items: center; }
   .hero .badge {
-    font-size: 1.15cqh; font-weight: 500; color: rgba(255,255,255,0.62);
+    font-size: 1.15vh; font-weight: 500; color: rgba(255,255,255,0.62);
     background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 999px; padding: 0.45cqh 0.9cqw;
+    border-radius: 999px; padding: 0.45vh 0.9vw;
   }
   .hero .meta a { color: rgba(255,255,255,0.8); text-decoration: none; }
   .hero .meta a:hover { color: #fff; }
@@ -319,13 +321,33 @@
   }
 
   @media (max-width: 720px) {
-    .lid { top: 9vh; left: 4vw; right: 4vw; bottom: 32vh; }
-    .base { left: 2vw; right: 2vw; top: 68vh; }
-    .floor { top: 67vh; width: 90vw; }
-    .s-cursor .cursor { top: 12vh; left: 78vw; }
-    .hero { left: 6cqw; bottom: 5cqh; max-width: 78cqw; }
-    .hero h1 { font-size: 6.5cqh; }
-    .panel { width: 62cqw; }
+    /* Mini MacBook (84vw wide, strict 16:10 ratio) then zooms to fill screen.
+       height = 84vw × 0.625 = 52.5vw
+       bottom = 100vh − 13vh − 52.5vw = 87vh − 52.5vw                     */
+    .lid {
+      top: 13vh; left: 8vw; right: 8vw;
+      bottom: calc(87vh - 52.5vw);
+      border-width: 1.2vw; border-radius: 2.5vw;
+    }
+
+    /* Hinge sits right below the lid */
+    .base {
+      left: 6vw; right: 6vw;
+      top: calc(13vh + 52.5vw);
+      height: 1.8vh;
+    }
+
+    /* Ambient glow under the hinge */
+    .floor {
+      top: calc(15.5vh + 52.5vw);
+      width: 84vw; height: 14vh;
+    }
+
+    /* Cursor → Claude pill in the mini menu bar */
+    .s-cursor .cursor { top: 14.3vh; left: 81vw; }
+
+    /* Panel a bit narrower to fit the smaller container */
+    .panel { width: 68cqw; min-width: 0; }
   }
 </style>
 </head>
@@ -390,21 +412,22 @@
           </div>
         </div>
 
-        <!-- Hero -->
-        <div class="hero">
-          <span class="eyebrow"><span class="dot"></span> Unofficial · macOS menu bar</span>
-          <h1>claude-menubar</h1>
-          <p>Your Claude Code usage, live in the menu bar.</p>
-          <a class="dl" href="https://github.com/cwLee0911/claude-menubar/releases/latest/download/claude-menubar.dmg">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.543 12.647c-.024-2.529 2.063-3.745 2.156-3.804-1.176-1.72-3.005-1.955-3.656-1.98-1.556-.158-3.038.916-3.827.916-.789 0-2.007-.893-3.301-.868-1.699.025-3.265.988-4.139 2.508-1.765 3.061-.451 7.59 1.265 10.073.838 1.216 1.836 2.579 3.146 2.531 1.262-.051 1.738-.816 3.263-.816 1.524 0 1.953.816 3.288.79 1.357-.024 2.215-1.24 3.046-2.46.96-1.412 1.355-2.78 1.379-2.85-.03-.013-2.645-1.015-2.67-4.027-.024-2.519 2.05-3.726 2.144-3.785M15.06 4.99c.697-.845 1.167-2.02 1.039-3.19-1.004.041-2.22.669-2.94 1.513-.646.749-1.212 1.945-1.06 3.092 1.12.087 2.264-.569 2.961-1.415"/></svg>
-            Download for macOS
-          </a>
-          <div class="meta">
-            <span class="badge">macOS 14+</span>
-            <span class="badge">Developer ID notarized</span>
-            <span class="badge"><a href="https://github.com/cwLee0911/claude-menubar">GitHub ↗</a></span>
-          </div>
-        </div>
+      </div>
+    </div>
+
+    <!-- Hero lives outside .lid so it can appear below the laptop on mobile -->
+    <div class="hero">
+      <span class="eyebrow"><span class="dot"></span> Unofficial · macOS menu bar</span>
+      <h1>claude-menubar</h1>
+      <p>Your Claude Code usage, live in the menu bar.</p>
+      <a class="dl" href="https://github.com/cwLee0911/claude-menubar/releases/latest/download/claude-menubar.dmg">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.543 12.647c-.024-2.529 2.063-3.745 2.156-3.804-1.176-1.72-3.005-1.955-3.656-1.98-1.556-.158-3.038.916-3.827.916-.789 0-2.007-.893-3.301-.868-1.699.025-3.265.988-4.139 2.508-1.765 3.061-.451 7.59 1.265 10.073.838 1.216 1.836 2.579 3.146 2.531 1.262-.051 1.738-.816 3.263-.816 1.524 0 1.953.816 3.288.79 1.357-.024 2.215-1.24 3.046-2.46.96-1.412 1.355-2.78 1.379-2.85-.03-.013-2.645-1.015-2.67-4.027-.024-2.519 2.05-3.726 2.144-3.785M15.06 4.99c.697-.845 1.167-2.02 1.039-3.19-1.004.041-2.22.669-2.94 1.513-.646.749-1.212 1.945-1.06 3.092 1.12.087 2.264-.569 2.961-1.415"/></svg>
+        Download for macOS
+      </a>
+      <div class="meta">
+        <span class="badge">macOS 14+</span>
+        <span class="badge">Developer ID notarized</span>
+        <span class="badge"><a href="https://github.com/cwLee0911/claude-menubar">GitHub ↗</a></span>
       </div>
     </div>
 
